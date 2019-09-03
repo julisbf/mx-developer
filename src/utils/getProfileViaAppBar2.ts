@@ -30,6 +30,8 @@ const getProfileViaAppBar2 = (): Promise<AppBar2Response> =>
 declare global {
     interface Window {
         __MXOpenID: string;
+        showNew: () => void;
+        showOld: () => void;
     }
 }
 

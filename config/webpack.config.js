@@ -575,7 +575,7 @@ module.exports = function(webpackEnv) {
           path: './build/',
           processOutput: assets => `
     ############################################################################################
-    # Mendix assets redirect mapping
+    # Mendix assets redirect mapping for nginx on production
     ############################################################################################
             
     ~*\\/mx-header.js ${assets.main.js};

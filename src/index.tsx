@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import MxHeader from './components/MxHeader';
+import CollaborationDock from './components/CollaborationDock';
 import MxFooter from './components/MxFooter';
+import { getItem, setItem, MX_PLATFORM } from './utils/localstorageHelpers';
 
 import observe from './utils/observe';
 
@@ -17,8 +19,23 @@ const mount = (className: string, Component: React.ComponentType<any>) => {
     if (element) ReactDOM.render(<Component />, element);
     return element;
 };
+
+const { isShowingNew } = getItem(MX_PLATFORM, {
+    isShowingNew: false, // if user is new, give an initial value
+});
+
+window.showNew = () => {
+    setItem(MX_PLATFORM, { isShowingNew: true });
+    // TODO: ask React to re-render
+};
+
+window.showOld = () => {
+    setItem(MX_PLATFORM, { isShowingNew: false });
+    // TODO: ask React to re-render
+};
+
 observe(observer => {
-    header = mount('mxHeader', MxHeader);
+    header = mount('mxHeader', isShowingNew ? CollaborationDock : MxHeader);
     footer = mount('mxFooter', MxFooter);
     if (header && footer) {
         observer.disconnect();
