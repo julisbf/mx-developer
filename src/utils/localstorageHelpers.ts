@@ -1,11 +1,12 @@
+import { get, set, on } from 'local-storage';
+
 export const MX_PLATFORM = 'mxPlatform';
 
 export const getItem = (key: string = MX_PLATFORM, initialValue: any = {}) => {
     try {
-        const itemAsString = window.localStorage.getItem(MX_PLATFORM);
-        const item = itemAsString && JSON.parse(itemAsString);
+        const item = get(MX_PLATFORM);
         if (!item) {
-            window.localStorage.setItem(key, JSON.stringify(initialValue));
+            set(key, initialValue);
             return initialValue;
         }
         return item;
@@ -14,6 +15,5 @@ export const getItem = (key: string = MX_PLATFORM, initialValue: any = {}) => {
     }
 };
 
-export const setItem = (key: string, item: string | object | null) => {
-    window.localStorage.setItem(key, JSON.stringify(item));
-};
+export const setItem = set;
+export const onItem = on;
