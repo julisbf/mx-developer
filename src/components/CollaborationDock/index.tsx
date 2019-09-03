@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CollaborationDock = () => {
+const CollaborationDock: React.FC = () => {
     return <div>Collaboration Dock</div>;
 };
 

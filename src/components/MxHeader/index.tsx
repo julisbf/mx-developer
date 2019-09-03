@@ -34,8 +34,7 @@ class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
 
     componentDidMount() {
         window.addEventListener('resize', this.closeMobileMenuOnBigScreen);
-        observe(observer => {
-            if (!modalObserver) modalObserver = observer;
+        modalObserver = observe(() => {
             const elements = document.getElementsByClassName('mx-underlay');
             elements.length > 0
                 ? this.setState({ setAsBackground: true })
