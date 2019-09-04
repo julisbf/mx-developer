@@ -8,7 +8,7 @@ const operationsDeskLink = getEnvironmentLink(links.cloudportal.operationsDesk);
 const platformAdminLink = getEnvironmentLink(links.sprintr.platformAdmin);
 const companyAdminLink = getEnvironmentLink(links.sprintr.companyAdmin);
 
-const CloudLinks = ({
+const SprintrLinks = ({
     hasCompanyAdmin,
     hasPlatformAdmin,
     hasOperationsDesk,
@@ -19,33 +19,40 @@ const CloudLinks = ({
     hasOperationsDesk: boolean;
     getOnClick: (microflow: string, url: string) => () => void;
 }) => {
-    const onClickOperationsDesk = getOnClick(
-        microflows.cloudportal.operationsDesk,
-        operationsDeskLink
+    const onClickCompanyAdmin = getOnClick(
+        microflows.sprintr.companyAdmin,
+        companyAdminLink
+    );
+    const onClickPlatformAdmin = getOnClick(
+        microflows.sprintr.platformAdmin,
+        platformAdminLink
     );
 
     return (
         <>
             {hasCompanyAdmin && (
-                <a className="MxHeader_admin-link" href={companyAdminLink}>
+                <span
+                    className="MxDock_admin-link"
+                    onClick={onClickCompanyAdmin}
+                >
                     Company Admin
-                </a>
+                </span>
             )}
             {hasPlatformAdmin && (
-                <a className="MxHeader_admin-link" href={platformAdminLink}>
+                <span
+                    className="MxDock_admin-link"
+                    onClick={onClickPlatformAdmin}
+                >
                     Platform Admin
-                </a>
+                </span>
             )}
             {hasOperationsDesk && (
-                <span
-                    className="MxHeader_admin-link"
-                    onClick={onClickOperationsDesk}
-                >
+                <a href={operationsDeskLink} className="MxDock_admin-link">
                     Operations Desk
-                </span>
+                </a>
             )}
         </>
     );
 };
 
-export default connect()(React.memo(CloudLinks));
+export default connect()(React.memo(SprintrLinks));

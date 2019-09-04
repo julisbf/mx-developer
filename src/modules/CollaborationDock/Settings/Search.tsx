@@ -6,10 +6,7 @@ import React from 'react';
  */
 
 const Search = () => (
-    <button
-        className="MxHeader__search hidden"
-        id="mendix-header-search-button"
-    >
+    <button className="MxDock__search hidden" id="mendix-header-search-button">
         Search
     </button>
 );

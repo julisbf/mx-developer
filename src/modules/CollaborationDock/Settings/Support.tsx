@@ -3,10 +3,10 @@ import React from 'react';
 import supportMenuItems from '../../../resources/menu/support.json';
 
 const SupportMenu = () => (
-    <ul className="MxHeader__support-menu">
+    <ul className="MxDock__support-menu">
         {supportMenuItems.map(item => (
-            <li className="MxHeader__support-menu-item" key={item.url}>
-                <a className="MxHeader__support-menu-item-link" href={item.url}>
+            <li className="MxDock__support-menu-item" key={item.url}>
+                <a className="MxDock__support-menu-item-link" href={item.url}>
                     {item.label}
                 </a>
             </li>
@@ -15,7 +15,7 @@ const SupportMenu = () => (
 );
 
 const Support = () => (
-    <div className="MxHeader__support">
+    <div className="MxDock__support">
         <SupportMenu />
     </div>
 );

@@ -9,6 +9,8 @@ import {
     MX_PLATFORM,
 } from '../utils/localstorageHelpers';
 
+
+
 window.showNew = () => {
     setItem(MX_PLATFORM, { isShowingNew: true });
     window.location.reload();

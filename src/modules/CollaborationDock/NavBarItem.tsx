@@ -5,7 +5,7 @@ import Toggle from './NavBarMenuToggle';
 import { navigateByCallingMicroflow } from '../../utils/mxHelpers';
 import { onSprintr } from '../../utils/environmentHelpers';
 
-interface NavBarItemProps extends Node {
+export interface NavBarItemProps extends Node {
     nodes?: Node[];
 }
 

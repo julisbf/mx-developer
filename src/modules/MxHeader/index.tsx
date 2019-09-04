@@ -2,10 +2,12 @@ import React from 'react';
 import debounce from 'tiny-debounce';
 
 import observe from '../../utils/observe';
-import Authenticate from './Authenticate';
+import Authenticate from '../../components/Authenticate';
 import MobileMenuToggle from './MobileMenuToggle';
-import Logo from './Logo';
-import NavBar from './NavBar';
+import Logo from '../../components/Logo';
+// import NavBar from '../../components/NavBar';
+// import NavBarItem, { NavBarItemProps } from './NavBarItem';
+import NavBar from './MxHeaderNavBar';
 import Settings from './Settings';
 import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
 import { getWindowSize, PHONE, SCREEN_SM } from '../../utils/screenSizeHelpers';
@@ -83,8 +85,8 @@ class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
                             toggle={this.toggleMobileNavBar}
                             isOn={isMobileNavBarOpen}
                         />
-                        <Logo />
-                        <NavBar isOpenOnMobile={isMobileNavBarOpen} />
+                        <Logo block="MxHeader" />
+                        <NavBar isMobileNavBarOpen={isMobileNavBarOpen} />
                         <div className="MxHeader__white-space"></div>
                         {showSettings && <Settings />}
                     </div>

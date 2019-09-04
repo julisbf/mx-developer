@@ -9,7 +9,7 @@ import {
 import { links, microflows } from '../../../resources/mendix.json';
 
 import AdminLinks from './AdminLinks';
-import getClickHandlerForLinkWithMicroflow from '../../getClickHandlerForLinkWithMicroflow';
+import getClickHandlerForLinkWithMicroflow from '../../../components/getClickHandlerForLinkWithMicroflow';
 
 const ProfileMenu = ({
     avatarUrl,

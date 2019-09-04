@@ -4,7 +4,7 @@
 
 import fetchJsonp from 'fetch-jsonp';
 
-import { AppBar2Response } from '../typings/Authenticate';
+import { AppBar2Response } from '../typings';
 import { PROFILE_URL } from '../config';
 
 const profileUrl = `${PROFILE_URL}?q=${Number(new Date())}`;
@@ -26,13 +26,5 @@ const getProfileViaAppBar2 = (): Promise<AppBar2Response> =>
         .catch(e => {
             console.warn('Error loading profile for feedback widget: ', e);
         });
-
-declare global {
-    interface Window {
-        __MXOpenID: string;
-        showNew: () => void;
-        showOld: () => void;
-    }
-}
 
 export default getProfileViaAppBar2;

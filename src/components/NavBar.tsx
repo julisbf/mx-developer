@@ -1,28 +1,29 @@
 import React from 'react';
 
-import { getCurrentApp, BEAVER } from '../../utils/environmentHelpers';
+import { getCurrentApp, BEAVER } from '../utils/environmentHelpers';
+import navbarItemData from '../resources/menu/navbar.json';
 
-import navbarItemData from '../../resources/menu/navbar.json';
-import NavBarItem from './NavBarItem';
-
-const NavBar = () => {
+const NavBar = ({
+    className,
+    children,
+}: {
+    className: string;
+    children: Function;
+}) => {
     const currentApp = getCurrentApp();
-
     /**
      * Why the `filter`?
      * We need to hide Sprintr-related NavBarItems on `beaver` (apps owned by digital ecosystem team)
      *  */
     return (
-        <div className="MxDock__nav-bar">
+        <div className={className}>
             {navbarItemData
                 .filter(
                     itemData =>
                         currentApp !== BEAVER ||
                         (currentApp === BEAVER && !itemData.microflow)
                 )
-                .map(({ key, ...data }) => (
-                    <NavBarItem key={key} {...data} />
-                ))}
+                .map(itemData => children(itemData))}
         </div>
     );
 };

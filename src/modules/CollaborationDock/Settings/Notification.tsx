@@ -15,13 +15,13 @@ const Notification = () => {
     return onSprintr() ? (
         <a
             href={getEnvironmentLink(links.sprintr.notifications)}
-            className="MxHeader__notification"
+            className="MxDock__notification"
         >
             Notification
         </a>
     ) : (
         <button
-            className="MxHeader__notification"
+            className="MxDock__notification"
             onClick={onClick}
             onKeyDown={onClick}
         >

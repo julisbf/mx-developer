@@ -9,7 +9,7 @@ import {
 import { links, microflows } from '../../../resources/mendix.json';
 
 import AdminLinks from './AdminLinks';
-import getClickHandlerForLinkWithMicroflow from '../../getClickHandlerForLinkWithMicroflow';
+import getClickHandlerForLinkWithMicroflow from '../../../components/getClickHandlerForLinkWithMicroflow';
 
 const ProfileMenu = ({
     avatarUrl,
@@ -33,17 +33,17 @@ const ProfileMenu = ({
     });
 
     return (
-        <div className="MxHeader__profile-menu">
+        <div className="MxDock__profile-menu">
             <img
                 src={avatarUrl || avatarImage}
                 alt={username}
-                className="MxHeader__profile-menu-photo"
+                className="MxDock__profile-menu-photo"
             />
-            <span className="MxHeader__profile-menu-username">{username}</span>
-            <span className="MxHeader__profile-menu-email">{email}</span>
-            <div className="MxHeader__profile-menu-divider"></div>
+            <span className="MxDock__profile-menu-username">{username}</span>
+            <span className="MxDock__profile-menu-email">{email}</span>
+            <div className="MxDock__profile-menu-divider"></div>
             <a
-                className="MxHeader__developer-portal"
+                className="MxDock__developer-portal"
                 href={homeUrl}
                 onClick={onClickDevPortal}
                 id="mx-header-link-devportal"
@@ -51,7 +51,7 @@ const ProfileMenu = ({
                 Developer Portal
             </a>
             <a
-                className="MxHeader__community-profile"
+                className="MxDock__community-profile"
                 href={links.community}
                 id="mx-header-link-dashboard"
             >
@@ -60,7 +60,7 @@ const ProfileMenu = ({
             <AdminLinks closeMenu={closeMenu} />
             {logoutUrl && (
                 <a
-                    className="MxHeader__logout"
+                    className="MxDock__logout"
                     href={logoutUrl}
                     id="mx-header-link-logout"
                 >

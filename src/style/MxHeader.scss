@@ -267,6 +267,9 @@ $submenu-item-height: 32px;
 .MxHeader__nav-bar-menu-item {
     margin-bottom: 10px;
     line-height: 24px;
+    &:last-child {
+        margin-bottom: 4px;
+    }
 }
 
 .MxHeader__nav-bar-menu-item-link {
@@ -510,13 +513,12 @@ $submenu-item-height: 32px;
     }
 }
 
-
 /* --------------- Hacking --------------- */
 
-.mx-window{
+.mx-window {
     z-index: 1002 !important;
 }
 
-.mx-underlay{
+.mx-underlay {
     z-index: 1001 !important;
 }

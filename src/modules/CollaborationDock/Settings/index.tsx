@@ -24,7 +24,7 @@ const Settings = ({
         </>
     );
     return (
-        <div className="MxHeader__Setting">
+        <div className="MxDock__Setting">
             <Search />
             <Support />
             {loaded && <ProfileComponents />}

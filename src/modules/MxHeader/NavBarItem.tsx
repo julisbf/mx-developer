@@ -5,9 +5,11 @@ import NavBarMenuToggle from './NavBarMenuToggle';
 import { navigateByCallingMicroflow } from '../../utils/mxHelpers';
 import { onSprintr } from '../../utils/environmentHelpers';
 
-interface NavBarItemProps extends Node {
+export interface NavBarItemProps extends Node {
     isOnMobile: boolean;
     nodes?: Node[];
+    block: string;
+    toggleComponent: React.ComponentType<any>;
 }
 
 interface NavBarItemState {
@@ -47,13 +49,13 @@ class NavBarItem extends React.Component<NavBarItemProps, NavBarItemState> {
             <div
                 className={
                     isOnMobile
-                        ? 'MxHeader__nav-bar-item'
-                        : 'MxHeader__nav-bar-item--desktop'
+                        ? `MxHeader__nav-bar-item`
+                        : `MxHeader__nav-bar-item--desktop`
                 }
             >
                 {onSprintr() || (isOnMobile && nodes && nodes.length > 0) ? (
                     <span
-                        className="MxHeader__nav-bar-item-link"
+                        className={`MxHeader__nav-bar-item-link`}
                         onClick={navigate}
                         role="button"
                         onKeyPress={navigate}
@@ -71,8 +73,8 @@ class NavBarItem extends React.Component<NavBarItemProps, NavBarItemState> {
                         href={link}
                         className={
                             isOnMobile
-                                ? 'MxHeader__nav-bar-item-link'
-                                : 'MxHeader__nav-bar-item-link--desktop'
+                                ? `MxHeader__nav-bar-item-link`
+                                : `MxHeader__nav-bar-item-link--desktop`
                         }
                         target={external ? '_blank' : '_self'}
                     >

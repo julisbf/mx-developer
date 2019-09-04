@@ -5,7 +5,7 @@ import { setAdminInfoAction, AdminInfo } from '../../../context/reducer';
 import { getAdminInfo } from '../../../utils/mxHelpers';
 import { onSprintr, onCloud } from '../../../utils/environmentHelpers';
 import { microflows } from '../../../resources/mendix.json';
-import getClickHandlerForLinkWithMicroflow from '../../getClickHandlerForLinkWithMicroflow';
+import getClickHandlerForLinkWithMicroflow from '../../../components/getClickHandlerForLinkWithMicroflow';
 import SprintrLinks from './SprintrLinks';
 import CloudLinks from './CloudLinks';
 

@@ -26,6 +26,6 @@
         "isolatedModules": true,
         "noEmit": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "typings"],
     "exclude": ["build", "node_modules", "**/*.test.tsx"]
 }

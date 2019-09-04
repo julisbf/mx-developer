@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import observe from '../../utils/observe';
-import NavBar from './NavBar';
-import Logo from './Logo';
+import Logo from '../../components/Logo';
+
+import NavBar from './MxDockNavBar';
 import Toggle from './Toggle';
-import Authenticate from './Authenticate';
+import Authenticate from '../../components/Authenticate';
 import Settings from './Settings';
 import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
 import { Provider } from '../../context/store';
@@ -51,7 +52,7 @@ const CollaborationDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
                 <div className="MxDock">
                     <Authenticate />
                     <Toggle onClick={toggle} />
-                    <Logo />
+                    <Logo block="MxDock" />
                     <NavBar />
                     <div className="MxDock__white-space"></div>
                     {showSettings && <Settings />}
