@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 
 import observe from '../../utils/observe';
 import NavBar from './NavBar';
@@ -7,6 +8,7 @@ import Toggle from './Toggle';
 import Authenticate from './Authenticate';
 import Settings from './Settings';
 import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
+import { Provider } from '../../context/store';
 
 interface MxDockProps {
     idTokenProviderMF?: string;
@@ -34,18 +36,18 @@ const CollaborationDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
 
     useEffect(() => () => modalObserver.disconnect());
 
-    /**
-     * TODO: componentWillUnmount
-     * - modalObserver.disconnect();
-     */
-
     const currentApp = getCurrentApp();
     const showSettings = ![BEAVER, SUPPORT].includes(currentApp);
 
     const initialState = { idTokenProviderMF };
     return (
         <Provider initialState={initialState}>
-            <div className="MxDock__container">
+            <div
+                className={classNames(
+                    isOpen ? 'MxDock__container--open' : 'MxDock__container',
+                    { background: isBackground }
+                )}
+            >
                 <div className="MxDock">
                     <Authenticate />
                     <Toggle onClick={toggle} />
