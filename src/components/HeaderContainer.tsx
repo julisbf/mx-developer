@@ -24,14 +24,15 @@ interface LocalStorageItem {
 }
 
 const HeaderContainer: React.FC = props => {
-    const item = getItem(MX_PLATFORM, {
+    const localStorageItem: LocalStorageItem = getItem(MX_PLATFORM, {
         isShowingNew: false, // if user is new, give an initial value
     });
 
-    const [isShowingNew, setIsShowingNew] = useState(item.isShowingNew);
+    const [isShowingNew, setIsShowingNew] = useState(
+        localStorageItem.isShowingNew
+    );
 
     onItem(MX_PLATFORM, (value: LocalStorageItem) => {
-        console.log(value);
         setIsShowingNew(value.isShowingNew);
     });
 

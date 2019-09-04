@@ -1,7 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CollaborationDock: React.FC = () => {
-    return <div>Collaboration Dock</div>;
+import observe from '../../utils/observe';
+import NavBar from './NavBar';
+import Logo from './Logo';
+import Toggle from './Toggle';
+import Authenticate from './Authenticate';
+import Settings from './Settings';
+import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
+
+interface MxDockProps {
+    idTokenProviderMF?: string;
+}
+
+/**
+ * `mx-underlay` is the css class of a modal element; its z-index is around 100.
+ * Meaning that Header will be on top of the modal, which is weird.
+ * So, we observe whenever `mx-underlay` appears, change Header's z-index to 99.
+ * TODO:
+ * change z-index of `mx-underlay` in the design system. So we can remove this observer.
+ */
+let modalObserver: MutationObserver;
+
+const CollaborationDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isBackground, setIsBackground] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
+
+    modalObserver = observe(() => {
+        const elements = document.getElementsByClassName('mx-underlay');
+        elements.length > 0 ? setIsBackground(true) : setIsBackground(false);
+    });
+
+    useEffect(() => () => modalObserver.disconnect());
+
+    /**
+     * TODO: componentWillUnmount
+     * - modalObserver.disconnect();
+     */
+
+    const currentApp = getCurrentApp();
+    const showSettings = ![BEAVER, SUPPORT].includes(currentApp);
+
+    const initialState = { idTokenProviderMF };
+    return (
+        <Provider initialState={initialState}>
+            <div className="MxDock__container">
+                <div className="MxDock">
+                    <Authenticate />
+                    <Toggle onClick={toggle} />
+                    <Logo />
+                    <NavBar />
+                    <div className="MxDock__white-space"></div>
+                    {showSettings && <Settings />}
+                </div>
+            </div>
+        </Provider>
+    );
 };
 
 export default CollaborationDock;

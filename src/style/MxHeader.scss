@@ -509,3 +509,14 @@ $submenu-item-height: 32px;
         color: white;
     }
 }
+
+
+/* --------------- Hacking --------------- */
+
+.mx-window{
+    z-index: 1002 !important;
+}
+
+.mx-underlay{
+    z-index: 1001 !important;
+}
