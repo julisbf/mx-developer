@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 
 import MxHeader from './MxHeader';
-import CollaborationDock from './CollaborationDock';
+import MxDock from './MxDock';
 import {
     getItem,
     setItem,
     onItem,
     MX_PLATFORM,
 } from '../utils/localstorageHelpers';
-
-
 
 window.showNew = () => {
     setItem(MX_PLATFORM, { isShowingNew: true });
@@ -25,7 +23,7 @@ interface LocalStorageItem {
     isShowingNew: boolean;
 }
 
-const HeaderContainer: React.FC = props => {
+const Selector: React.FC = props => {
     const localStorageItem: LocalStorageItem = getItem(MX_PLATFORM, {
         isShowingNew: false, // if user is new, give an initial value
     });
@@ -38,11 +36,7 @@ const HeaderContainer: React.FC = props => {
         setIsShowingNew(value.isShowingNew);
     });
 
-    return isShowingNew ? (
-        <CollaborationDock {...props} />
-    ) : (
-        <MxHeader {...props} />
-    );
+    return isShowingNew ? <MxDock {...props} /> : <MxHeader {...props} />;
 };
 
-export default HeaderContainer;
+export default Selector;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HeaderContainer from './modules/HeaderContainer';
+import Selector from './modules/Selector';
 import MxFooter from './modules/MxFooter';
 
 import observe from './utils/observe';
@@ -28,7 +28,7 @@ const mount = (className: string, Component: React.ComponentType<any>) => {
 
 const loadComponent = () => {
     observe(observer => {
-        header = mount('mxHeader', HeaderContainer);
+        header = mount('mxHeader', Selector);
         footer = mount('mxFooter', MxFooter);
         if (header && footer) {
             observer.disconnect();

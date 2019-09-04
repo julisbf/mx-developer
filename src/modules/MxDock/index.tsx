@@ -24,7 +24,7 @@ interface MxDockProps {
  */
 let modalObserver: MutationObserver;
 
-const CollaborationDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
+const MxDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isBackground, setIsBackground] = useState(false);
 
@@ -62,4 +62,4 @@ const CollaborationDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
     );
 };
 
-export default CollaborationDock;
+export default MxDock;
