@@ -1,14 +1,14 @@
 import React from 'react';
 
-import NavBar from '../../components/NavBar';
+import NavBarComponent from '../../components/NavBar';
 import NavBarItem, { NavBarItemProps } from './NavBarItem';
 
-const MxDockNavBar = () => (
-    <NavBar className="MxDock__nav-bar">
+const NavBar = () => (
+    <NavBarComponent className="MxDock__nav-bar">
         {({ key, ...data }: NavBarItemProps) => (
             <NavBarItem key={key} {...data} />
         )}
-    </NavBar>
+    </NavBarComponent>
 );
 
-export default MxDockNavBar;
+export default NavBar;
