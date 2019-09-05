@@ -197,7 +197,7 @@ $submenu-item-height: 32px;
     line-height: $font-size;
     @include speech-bubble(left, top);
     padding: 8px 0;
-    top: -16px;
+    top: -2px;
     left: 46px;
     font-size: $font-size;
 }
@@ -260,6 +260,7 @@ $submenu-item-height: 32px;
     border: none;
     display: flex; // block will have a ghost 3px at the bottom
     margin-top: 12px;
+    position: relative;
 }
 
 .MxDock__profile-menu {
@@ -267,12 +268,9 @@ $submenu-item-height: 32px;
     opacity: 1;
     visibility: visible;
     padding: 8px 0;
-    top: -132px;
-    left: 46px;
+    bottom: -6px;
+    left: 40px;
     font-size: $font-size;
-    @include mq(md, min) {
-        right: 14px;
-    }
 }
 
 .MxDock__profile-menu-divider {

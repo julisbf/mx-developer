@@ -407,6 +407,9 @@ $submenu-item-height: 32px;
     background: transparent;
     border: none;
     display: flex; // block will have a ghost 3px at the bottom
+    position: relative;
+    height: 100%;
+    align-items: center;
 }
 
 .MxHeader__profile-menu {
@@ -415,11 +418,8 @@ $submenu-item-height: 32px;
     visibility: visible;
     padding: 8px 0;
     top: $menu-top;
-    right: 20px;
+    right: 0;
     font-size: $font-size;
-    @include mq(md, min) {
-        right: 14px;
-    }
 }
 
 .MxHeader__profile-menu-divider {
