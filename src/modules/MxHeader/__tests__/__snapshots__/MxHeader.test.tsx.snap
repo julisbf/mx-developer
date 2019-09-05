@@ -8,14 +8,14 @@ exports[`MxHeader should render correctly 1`] = `
     class="MxHeader"
   >
     <button
-      class="MxHeader__mobile-menu-toggle"
+      class="MxHeader__toggle-on-mobile"
       type="button"
     >
       <span
-        class="MxHeader__mobile-menu-toggle-box"
+        class="MxHeader__toggle-on-mobile-box"
       >
         <span
-          class="MxHeader__mobile-menu-toggle-middle-bar"
+          class="MxHeader__toggle-on-mobile-middle-bar"
         />
       </span>
     </button>

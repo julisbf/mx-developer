@@ -112,7 +112,7 @@ $submenu-item-height: 32px;
     }
 }
 
-%MxHeader__mobile-menu-toggle-box {
+%MxHeader__toggle-on-mobile-box {
     position: relative;
     @include transition(background-color 0s 0.13s linear);
     display: inline-block;
@@ -158,37 +158,37 @@ $submenu-item-height: 32px;
     /* -------------------------------- END: drawing the upper bar and the lower bar  -------------------------------- */
 }
 
-.MxHeader__mobile-menu-toggle-box {
-    @extend %MxHeader__mobile-menu-toggle-box;
+.MxHeader__toggle-on-mobile-box {
+    @extend %MxHeader__toggle-on-mobile-box;
 }
 
-%MxHeader__mobile-menu-toggle-box__bar-transition {
+%MxHeader__toggle-on-mobile-box__bar-transition {
     @include transition(
         top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
         transform 0.13s cubic-bezier(0.215, 0.61, 0.355, 1)
     );
 }
 
-.MxHeader__mobile-menu-toggle-box--on {
-    @extend %MxHeader__mobile-menu-toggle-box;
+.MxHeader__toggle-on-mobile-box--on {
+    @extend %MxHeader__toggle-on-mobile-box;
     // rotate the upper bar when open
     &::before {
-        @extend %MxHeader__mobile-menu-toggle-box::before;
-        @extend %MxHeader__mobile-menu-toggle-box__bar-transition;
+        @extend %MxHeader__toggle-on-mobile-box::before;
+        @extend %MxHeader__toggle-on-mobile-box__bar-transition;
         transform: translate3d(-3px, 9px, 0) rotate(45deg);
         width: $hamburger-diagnal-length;
     }
 
     // rotate the lower bar when open
     &::after {
-        @extend %MxHeader__mobile-menu-toggle-box::after;
-        @extend %MxHeader__mobile-menu-toggle-box__bar-transition;
+        @extend %MxHeader__toggle-on-mobile-box::after;
+        @extend %MxHeader__toggle-on-mobile-box__bar-transition;
         transform: translate3d(-3px, -9px, 0) rotate(-45deg);
         width: $hamburger-diagnal-length;
     }
 }
 
-.MxHeader__mobile-menu-toggle {
+.MxHeader__toggle-on-mobile {
     display: block;
     position: relative;
     width: 50px;
@@ -205,7 +205,7 @@ $submenu-item-height: 32px;
     }
 }
 
-%MxHeader__mobile-menu-toggle-middle-bar {
+%MxHeader__toggle-on-mobile-middle-bar {
     height: $hamburger-bar-width;
     width: $hamburger-width;
     background: $hamburger-layer-color;
@@ -215,12 +215,12 @@ $submenu-item-height: 32px;
     transition: background 0.2s ease;
 }
 
-.MxHeader__mobile-menu-toggle-middle-bar {
-    @extend %MxHeader__mobile-menu-toggle-middle-bar;
+.MxHeader__toggle-on-mobile-middle-bar {
+    @extend %MxHeader__toggle-on-mobile-middle-bar;
 }
 
-.MxHeader__mobile-menu-toggle-middle-bar--on {
-    @extend %MxHeader__mobile-menu-toggle-middle-bar;
+.MxHeader__toggle-on-mobile-middle-bar--on {
+    @extend %MxHeader__toggle-on-mobile-middle-bar;
     transition: background 0.2s ease;
     background: rgba(0, 0, 0, 0);
 }

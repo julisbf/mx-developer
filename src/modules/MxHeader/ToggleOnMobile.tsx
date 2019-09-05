@@ -8,21 +8,21 @@ interface MobileMenuProps {
 const ToggleOnMobile = ({ toggle, isOn }: MobileMenuProps) => (
     <button
         onClick={toggle}
-        className="MxHeader__mobile-menu-toggle"
+        className="MxHeader__toggle-on-mobile"
         type="button"
     >
         <span
             className={
                 isOn
-                    ? 'MxHeader__mobile-menu-toggle-box--on'
-                    : 'MxHeader__mobile-menu-toggle-box'
+                    ? 'MxHeader__toggle-on-mobile-box--on'
+                    : 'MxHeader__toggle-on-mobile-box'
             }
         >
             <span
                 className={
                     isOn
-                        ? 'MxHeader__mobile-menu-toggle-middle-bar--on'
-                        : 'MxHeader__mobile-menu-toggle-middle-bar'
+                        ? 'MxHeader__toggle-on-mobile-middle-bar--on'
+                        : 'MxHeader__toggle-on-mobile-middle-bar'
                 }
             />
         </span>
