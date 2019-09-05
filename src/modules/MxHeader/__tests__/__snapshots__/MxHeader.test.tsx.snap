@@ -16,7 +16,9 @@ exports[`MxHeader should render correctly 1`] = `
       >
         <span
           class="MxHeader__toggle-on-mobile-middle-bar"
-        />
+        >
+          Toggle
+        </span>
       </span>
     </button>
     <a
