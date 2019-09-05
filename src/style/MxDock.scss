@@ -3,9 +3,10 @@
 @import 'helpers';
 
 .MxDock {
-    position: absolute;
+    position: fixed;
     top: 0;
     height: 100vh;
+    width: 48px;
     z-index: 1000;
     font-family: $font-family;
 }
@@ -28,6 +29,8 @@ $panel-padding: 24px;
     font-size: 0;
     padding: 0;
     border: 0;
+    outline: none;
+    cursor: pointer;
     background: url('../resources/img/dot_toggle.svg') 7px 7px no-repeat;
 }
 
@@ -36,14 +39,27 @@ $panel-padding: 24px;
     bottom: 24px;
 }
 
+$panel-width: 280px;
+
+%MxDock__panel,
 .MxDock__panel {
     padding: $panel-padding;
     position: absolute;
     top: 0;
-    width: 280px;
+    left: -$panel-width;
+    opacity: 0;
+    transition: left 0.1s ease, opacity 0.3s ease;
+    width: $panel-width;
     height: 100%;
     background: white;
     box-shadow: 8px 0 20px 2px rgba(0, 0, 0, 0.1);
+}
+
+.MxDock__panel--open {
+    @extend %MxDock__panel;
+    left: 0;
+    opacity: 1;
+    transition: left 0.1s ease, opacity 0.3s ease;
 }
 
 .MxDock__panel-header {
@@ -85,15 +101,6 @@ $nav-bar-height: 56px;
     top: 0;
     padding: 0 0 10px 40px;
     list-style-type: none;
-}
-
-.MxDock__nav-bar-menu--desktop {
-    @extend %MxDock__nav-bar-menu;
-    line-height: $font-size;
-    @include speech-bubble(top, left);
-    top: $menu-top;
-    left: 14px;
-    z-index: 1; // to avoid being covered by next nav-bar-item
 }
 
 .MxDock__nav-bar-item,
@@ -147,4 +154,215 @@ $nav-bar-height: 56px;
     @extend %MxDock__nav-bar-menu-toggle;
     background: url('../resources/img/header/blue-down.svg') 5px 8px no-repeat;
     transform: rotate(180deg) translate(0, 0);
+}
+
+/* ------- settings ---------- */
+
+$header-height: 84px;
+$submenu-item-height: 32px;
+
+@at-root .MxDock__Setting {
+    display: flex;
+    width: 58px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+%MxDock__settings-button {
+    width: 38px;
+    height: 38px;
+    font-size: 0;
+    border: none;
+    padding: 0 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    outline: 0;
+    @include mq(phablet, min) {
+        width: 56px;
+    }
+}
+
+.MxDock__search {
+    @extend %MxDock__settings-button;
+    background: url('../resources/img/search.svg') no-repeat center;
+    &.hidden {
+        // hide this icon because the search will look for its id and replace it.
+        display: none;
+    }
+}
+
+.MxDock__support-menu {
+    list-style-type: none;
+    line-height: $font-size;
+    @include speech-bubble(left, top);
+    padding: 8px 0;
+    top: -16px;
+    left: 46px;
+    font-size: $font-size;
+}
+
+.MxDock__support-menu-item {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-position: 0;
+    background-repeat: no-repeat;
+    white-space: nowrap;
+}
+
+.MxDock__support-menu-item-link {
+    @extend %MxDock__link;
+    display: block;
+    text-align: left;
+    padding: 0 17px;
+    height: $submenu-item-height;
+    line-height: $submenu-item-height;
+}
+
+.MxDock__support {
+    @extend %MxDock__settings-button;
+    background: url('../resources/img/help.svg') no-repeat center;
+    position: relative;
+    cursor: pointer;
+    &:hover .MxDock__support-menu {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.MxDock__notification {
+    @extend %MxDock__settings-button;
+    background: url('../resources/img/notifications.svg') no-repeat center;
+}
+
+%MxDock__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+}
+
+.MxDock__avatar {
+    @extend %MxDock__avatar;
+    img {
+        @extend %MxDock__avatar;
+        border: 1px solid #eeeeee;
+    }
+}
+
+.MxDock__profile {
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: flex; // block will have a ghost 3px at the bottom
+    margin-top: 12px;
+}
+
+.MxDock__profile-menu {
+    @include speech-bubble(left, bottom);
+    opacity: 1;
+    visibility: visible;
+    padding: 8px 0;
+    top: -132px;
+    left: 46px;
+    font-size: $font-size;
+    @include mq(md, min) {
+        right: 14px;
+    }
+}
+
+.MxDock__profile-menu-divider {
+    background: $color-divider;
+    height: 1px;
+    margin: 7px 0;
+}
+
+.MxDock__profile-menu-photo {
+    @extend %MxDock__avatar;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 20px auto 14px auto;
+    border: 1px solid #eeeeee;
+}
+
+%MxDock__profile-menu-upper-part-item {
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    display: block;
+    padding: 0 21px 14px;
+    line-height: normal;
+}
+
+.MxDock__profile-menu-username {
+    @extend %MxDock__profile-menu-upper-part-item;
+    color: #555;
+    font-weight: 700;
+}
+
+.MxDock__profile-menu-email {
+    @extend %MxDock__profile-menu-upper-part-item;
+    color: #888;
+}
+
+%MxDock__profile-menu-lower-part-item {
+    display: block;
+    padding: 0 18px 0 48px;
+    height: $submenu-item-height;
+    line-height: $submenu-item-height;
+    font-size: 12px;
+    background-position: 8px;
+    background-repeat: no-repeat;
+    white-space: nowrap;
+    @extend %MxDock__link;
+}
+
+.MxDock__developer-portal {
+    @extend %MxDock__profile-menu-lower-part-item;
+    background-image: url('../resources/img/header/sprintr.svg');
+}
+
+.MxDock__community-profile {
+    @extend %MxDock__profile-menu-lower-part-item;
+    background-image: url('../resources/img/header/my_profile.svg');
+}
+
+.MxDock_admin-link {
+    @extend %MxDock__profile-menu-lower-part-item;
+    background: url('../resources/img/header/admin.svg') 14px 3px no-repeat;
+}
+
+.MxDock__logout {
+    @extend %MxDock__profile-menu-lower-part-item;
+    background-image: url('../resources/img/header/logout.svg');
+}
+
+.MxDock__start-button {
+    $pad: ($height-top-bar-inside - $font-size) / 2;
+    @include border-radius($top-row-height / 2);
+    padding: 13px 10px;
+    @include no-text-decoration();
+    text-align: center;
+    font-size: $font-size;
+    font-weight: normal;
+    line-height: $font-size;
+    white-space: nowrap;
+    @include transition(background-color 250ms ease);
+    margin-left: 10px;
+
+    &,
+    &:active,
+    &:visited {
+        background: $color-button-green;
+        color: white;
+    }
+    &:hover {
+        background: $color-button-green-hover;
+        color: white;
+    }
 }
