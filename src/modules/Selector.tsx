@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MxHeader from './MxHeader';
 import MxDock from './MxDock';
@@ -6,34 +6,41 @@ import {
     getItem,
     setItem,
     onItem,
-    MX_PLATFORM,
+    offItem,
+    IS_SHOWING_NEW,
 } from '../utils/localstorageHelpers';
+import clickLogger from '../utils/clickLogger';
 
 window.showNew = () => {
-    setItem(MX_PLATFORM, { isShowingNew: true });
+    setItem(IS_SHOWING_NEW, true);
     window.location.reload();
 };
 
 window.showOld = () => {
-    setItem(MX_PLATFORM, { isShowingNew: false });
+    setItem(IS_SHOWING_NEW, false);
     window.location.reload();
 };
 
-interface LocalStorageItem {
-    isShowingNew: boolean;
-}
-
 const Selector: React.FC = props => {
-    const localStorageItem: LocalStorageItem = getItem(MX_PLATFORM, {
-        isShowingNew: false, // if user is new, give an initial value
-    });
-
-    const [isShowingNew, setIsShowingNew] = useState(
-        localStorageItem.isShowingNew
+    const initialIsShowingNew: boolean = getItem(
+        IS_SHOWING_NEW,
+        false // if user is new, give an initial value
     );
 
-    onItem(MX_PLATFORM, (value: LocalStorageItem) => {
-        setIsShowingNew(value.isShowingNew);
+    const [isShowingNew, setIsShowingNew] = useState(initialIsShowingNew);
+
+    onItem(IS_SHOWING_NEW, setIsShowingNew);
+
+    const handleClick = clickLogger([
+        '.MxDock__toggle',
+        '.MxFooter',
+        '.MxDock',
+    ]);
+
+    // unsubscribe
+    useEffect(() => () => {
+        document.removeEventListener('click', handleClick);
+        offItem(IS_SHOWING_NEW, setIsShowingNew);
     });
 
     return isShowingNew ? <MxDock {...props} /> : <MxHeader {...props} />;

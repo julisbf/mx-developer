@@ -1,10 +1,11 @@
-import { get, set, on } from 'local-storage';
+import { get, set, on, off } from 'local-storage';
 
-export const MX_PLATFORM = 'mxPlatform';
+export const IS_SHOWING_NEW = 'mx__is-showing-new';
+export const CLICK_LOGS = 'mx__click-logs';
 
-export const getItem = (key: string = MX_PLATFORM, initialValue: any = {}) => {
+export const getItem = (key: string, initialValue: any = {}) => {
     try {
-        const item = get(MX_PLATFORM);
+        const item = get(key);
         if (!item) {
             set(key, initialValue);
             return initialValue;
@@ -17,3 +18,4 @@ export const getItem = (key: string = MX_PLATFORM, initialValue: any = {}) => {
 
 export const setItem = set;
 export const onItem = on;
+export const offItem = off;
