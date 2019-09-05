@@ -8,7 +8,6 @@ import {
 
 import { connect } from '../context/store';
 import { links, microflows } from '../resources/mendix.json';
-import logoImage from '../resources/img/mx_logo.png';
 
 const currentApp = getCurrentApp();
 
@@ -16,9 +15,10 @@ interface LogoProps {
     loginUrl: string;
     loggedIn: boolean;
     block: string;
+    src: string;
 }
 
-const Logo = ({ loginUrl, loggedIn, block }: LogoProps) => {
+const Logo = ({ loginUrl, loggedIn, block, src }: LogoProps) => {
     const homeUrl = loggedIn ? getEnvironmentLink(links.home) : loginUrl;
     const navigateToHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
         if (currentApp === SPRINTR) {
@@ -28,7 +28,7 @@ const Logo = ({ loginUrl, loggedIn, block }: LogoProps) => {
     };
     return (
         <a href={homeUrl} onClick={navigateToHome} className={`${block}__home`}>
-            <img src={logoImage} alt="Logo" className={`${block}__logo`} />
+            <img src={src} alt="Logo" className={`${block}__logo`} />
         </a>
     );
 };

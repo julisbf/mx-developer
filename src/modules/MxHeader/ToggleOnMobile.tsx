@@ -5,7 +5,7 @@ interface MobileMenuProps {
     isOn: boolean;
 }
 
-const MobileMenuToggle = ({ toggle, isOn }: MobileMenuProps) => (
+const ToggleOnMobile = ({ toggle, isOn }: MobileMenuProps) => (
     <button
         onClick={toggle}
         className="MxHeader__mobile-menu-toggle"
@@ -29,4 +29,4 @@ const MobileMenuToggle = ({ toggle, isOn }: MobileMenuProps) => (
     </button>
 );
 
-export default MobileMenuToggle;
+export default ToggleOnMobile;

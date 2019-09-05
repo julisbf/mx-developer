@@ -1,16 +1,12 @@
 import React from 'react';
 
-import NavBar from '../../components/NavBar';
+import NavBarComponent from '../../components/NavBar';
 import NavBarItem, { NavBarItemProps } from './NavBarItem';
 import Toggle from './NavBarMenuToggle';
 
-const MxHeaderNavBar = ({
-    isMobileNavBarOpen,
-}: {
-    isMobileNavBarOpen: boolean;
-}) => {
+const NavBar = ({ isMobileNavBarOpen }: { isMobileNavBarOpen: boolean }) => {
     return (
-        <NavBar
+        <NavBarComponent
             className={
                 isMobileNavBarOpen
                     ? 'MxHeader__nav-bar--mobile-menu-open'
@@ -26,8 +22,8 @@ const MxHeaderNavBar = ({
                     toggleComponent={Toggle}
                 />
             )}
-        </NavBar>
+        </NavBarComponent>
     );
 };
 
-export default MxHeaderNavBar;
+export default NavBar;

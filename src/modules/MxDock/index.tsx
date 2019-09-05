@@ -11,6 +11,8 @@ import Settings from './Settings';
 import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
 import { Provider } from '../../context/store';
 
+import logoImage from '../../resources/img/mx_logo.png';
+
 interface MxDockProps {
     idTokenProviderMF?: string;
 }
@@ -52,7 +54,7 @@ const MxDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
                 <div className="MxDock">
                     <Authenticate />
                     <Toggle onClick={toggle} />
-                    <Logo block="MxDock" />
+                    <Logo block="MxDock" src={logoImage} />
                     <NavBar />
                     <div className="MxDock__white-space"></div>
                     {showSettings && <Settings />}
