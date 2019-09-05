@@ -49,13 +49,13 @@ const NavBarItem: React.FC<NavBarItemProps> = ({
             ) : (
                 <a
                     href={link}
-                    className="MxDock-bar-item-link"
+                    className="MxDock__nav-bar-item-link"
                     target={external ? '_blank' : '_self'}
                 >
                     {label}
                 </a>
             )}
-            <NavBarMenu nodes={nodes}></NavBarMenu>
+            {isMenuOpen && <NavBarMenu nodes={nodes}></NavBarMenu>}
         </div>
     );
 };

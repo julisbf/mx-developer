@@ -1,11 +1,13 @@
 import React from 'react';
 
-interface ToggleProps {
-    onClick: () => void;
+interface MobileMenuProps {
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Toggle: React.FC<ToggleProps> = ({ onClick }) => {
-    return <div onClick={onClick}></div>;
-};
+const Toggle = ({ onClick }: MobileMenuProps) => (
+    <button onClick={onClick} className="MxDock__toggle" type="button">
+        Toggle
+    </button>
+);
 
 export default Toggle;

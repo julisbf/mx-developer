@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import observe from '../../utils/observe';
+// import observe from '../../utils/observe';
 import Logo from '../../components/Logo';
 
-import NavBar from './MxDockNavBar';
+import NavBar from './NavBar';
 import Toggle from './Toggle';
+import Panel from './Panel';
+import PanelHeader from './PanelHeader';
 import Authenticate from '../../components/Authenticate';
 import Settings from './Settings';
 import { getCurrentApp, BEAVER, SUPPORT } from '../../utils/environmentHelpers';
 import { Provider } from '../../context/store';
 
-import logoImage from '../../resources/img/mx_logo.png';
+import logoImage from '../../resources/img/black_mendix_logo.svg';
+import '../../style/MxDock.scss';
 
 interface MxDockProps {
     idTokenProviderMF?: string;
@@ -24,20 +27,20 @@ interface MxDockProps {
  * TODO:
  * change z-index of `mx-underlay` in the design system. So we can remove this observer.
  */
-let modalObserver: MutationObserver;
+// let modalObserver: MutationObserver;
 
 const MxDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isBackground, setIsBackground] = useState(false);
+    // const [isBackground, setIsBackground] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
-    modalObserver = observe(() => {
-        const elements = document.getElementsByClassName('mx-underlay');
-        elements.length > 0 ? setIsBackground(true) : setIsBackground(false);
-    });
+    // modalObserver = observe(() => {
+    //     const elements = document.getElementsByClassName('mx-underlay');
+    //     elements.length > 0 ? setIsBackground(true) : setIsBackground(false);
+    // });
 
-    useEffect(() => () => modalObserver.disconnect());
+    // useEffect(() => () => modalObserver.disconnect());
 
     const currentApp = getCurrentApp();
     const showSettings = ![BEAVER, SUPPORT].includes(currentApp);
@@ -47,18 +50,22 @@ const MxDock: React.FC<MxDockProps> = ({ idTokenProviderMF }) => {
         <Provider initialState={initialState}>
             <div
                 className={classNames(
-                    isOpen ? 'MxDock__container--open' : 'MxDock__container',
-                    { background: isBackground }
+                    'MxDock'
+                    // { background: isBackground }
                 )}
             >
-                <div className="MxDock">
+                <div className="MxDock__base">
                     <Authenticate />
                     <Toggle onClick={toggle} />
-                    <Logo block="MxDock" src={logoImage} />
-                    <NavBar />
-                    <div className="MxDock__white-space"></div>
                     {showSettings && <Settings />}
                 </div>
+                <Panel isOpen={isOpen}>
+                    <PanelHeader>
+                        <Toggle onClick={toggle} />
+                        <Logo block="MxDock" src={logoImage} />
+                    </PanelHeader>
+                    <NavBar />
+                </Panel>
             </div>
         </Provider>
     );

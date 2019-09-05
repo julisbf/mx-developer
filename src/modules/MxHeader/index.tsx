@@ -12,6 +12,7 @@ import { getWindowSize, PHONE, SCREEN_SM } from '../../utils/screenSizeHelpers';
 import { Provider } from '../../context/store';
 
 import logoImage from '../../resources/img/mx_logo.png';
+import '../../style/MxHeader.scss';
 
 interface MxHeaderProps {
     idTokenProviderMF?: string;
@@ -82,7 +83,7 @@ class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
                     <div className="MxHeader">
                         <Authenticate />
                         <ToggleOnMobile
-                            toggle={this.toggleMobileNavBar}
+                            onClick={this.toggleMobileNavBar}
                             isOn={isMobileNavBarOpen}
                         />
                         <Logo block="MxHeader" src={logoImage} />
