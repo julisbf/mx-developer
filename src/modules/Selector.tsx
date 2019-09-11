@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import MxHeader from './MxHeader';
 import MxDock from './MxDock';
 import {
-    getItem,
     setItem,
     onItem,
     offItem,
     IS_SHOWING_NEW,
-} from '../utils/localstorageHelpers';
+} from '../utils/hooks/useLocalstorage';
+import useLocalstorage from '../utils/hooks/useLocalstorage';
 import clickLogger from '../utils/clickLogger';
 
 window.showNew = () => {
@@ -22,12 +22,10 @@ window.showOld = () => {
 };
 
 const Selector: React.FC = props => {
-    const initialIsShowingNew: boolean = getItem(
+    const [isShowingNew, setIsShowingNew] = useLocalstorage<boolean>(
         IS_SHOWING_NEW,
-        false // if user is new, give an initial value
+        false
     );
-
-    const [isShowingNew, setIsShowingNew] = useState(initialIsShowingNew);
 
     onItem(IS_SHOWING_NEW, setIsShowingNew);
 

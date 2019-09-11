@@ -1,4 +1,4 @@
-import { CLICK_LOGS, getItem, setItem } from './localstorageHelpers';
+import { CLICK_LOGS, getItem, setItem } from './hooks/useLocalstorage';
 
 interface ClickLog {
     s: string; // selector
