@@ -23,13 +23,6 @@ interface MxHeaderState {
     setAsBackground: boolean;
 }
 
-/**
- * `mx-underlay` is the css class of a modal element; its z-index is around 100.
- * Meaning that Header will be on top of the modal, which is weird.
- * So, we observe whenever `mx-underlay` appears, change Header's z-index to 99.
- * TODO:
- * change z-index of `mx-underlay` in the design system. So we can remove this observer.
- */
 let modalObserver: MutationObserver;
 
 class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
@@ -47,7 +40,7 @@ class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.closeMobileMenuOnBigScreen);
-        modalObserver && modalObserver.disconnect();
+        modalObserver.disconnect();
     }
 
     closeMobileMenuOnBigScreen = debounce(() => {
@@ -75,9 +68,9 @@ class MxHeader extends React.Component<MxHeaderProps, MxHeaderState> {
             <Provider initialState={initialState}>
                 <div
                     className={
-                        !setAsBackground
-                            ? 'MxHeader__container'
-                            : 'MxHeader__container--background'
+                        setAsBackground
+                            ? 'MxHeader__container--background'
+                            : 'MxHeader__container'
                     }
                 >
                     <div className="MxHeader">

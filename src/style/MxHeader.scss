@@ -514,12 +514,17 @@ $submenu-item-height: 32px;
     }
 }
 
-/* --------------- Hacking --------------- */
+/* --------------- Modal hacking --------------- */
 
-.mx-window {
-    z-index: 1002 !important;
-}
+/**
+ * `These are the modal classes. we overwrite it to make it higher than the header
+ */
 
-.mx-underlay {
-    z-index: 1001 !important;
-}
+// .mx-window,
+// .mx-dialog {
+//     z-index: 1002 !important;
+// }
+
+// .mx-underlay {
+//     z-index: 1001 !important;
+// }

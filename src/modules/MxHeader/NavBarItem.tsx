@@ -1,15 +1,16 @@
 import React from 'react';
 
-import NavBarMenu, { Node } from './NavBarMenu';
 import NavBarMenuToggle from './NavBarMenuToggle';
-import { navigateByCallingMicroflow } from '../../utils/mxHelpers';
-import { onSprintr } from '../../utils/environmentHelpers';
+import NavBarMenu from './NavBarMenu';
 
-export interface NavBarItemProps extends Node {
+import { NodeInJsonFile } from '../../typings';
+
+import { navigateByCallingMicroflow } from '../../utils/mxHelpers';
+import { getEnvironmentLink } from '../../utils/environmentHelpers';
+
+export interface NavBarItemProps extends NodeInJsonFile {
     isOnMobile: boolean;
-    nodes?: Node[];
-    block: string;
-    toggleComponent: React.ComponentType<any>;
+    nodes?: NodeInJsonFile[];
 }
 
 interface NavBarItemState {
@@ -30,20 +31,23 @@ class NavBarItem extends React.Component<NavBarItemProps, NavBarItemState> {
 
     toggleMenu = (event: React.MouseEvent<HTMLElement>) => {
         event.stopPropagation();
+        event.preventDefault();
         this.setState(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen }));
     };
 
     render() {
         const {
             label,
-            link,
+            link: rawLink,
             microflow,
             nodes,
             external,
             isOnMobile,
         } = this.props;
         const { isMenuOpen } = this.state;
+        const link = getEnvironmentLink(rawLink);
         const navigate = () => navigateByCallingMicroflow(microflow, link);
+        const showNavBarMenuToggle = isOnMobile && nodes && nodes.length > 0;
 
         return (
             <div
@@ -53,34 +57,27 @@ class NavBarItem extends React.Component<NavBarItemProps, NavBarItemState> {
                         : `MxHeader__nav-bar-item--desktop`
                 }
             >
-                {onSprintr() || (isOnMobile && nodes && nodes.length > 0) ? (
-                    <span
-                        className={`MxHeader__nav-bar-item-link`}
-                        onClick={navigate}
-                        role="button"
-                        onKeyPress={navigate}
-                    >
-                        {label}
-                        {isOnMobile && (
-                            <NavBarMenuToggle
-                                isOpen={isMenuOpen}
-                                onClick={this.toggleMenu}
-                            />
-                        )}
-                    </span>
-                ) : (
-                    <a
-                        href={link}
-                        className={
-                            isOnMobile
-                                ? `MxHeader__nav-bar-item-link`
-                                : `MxHeader__nav-bar-item-link--desktop`
-                        }
-                        target={external ? '_blank' : '_self'}
-                    >
-                        {label}
-                    </a>
-                )}
+                <a
+                    href={link}
+                    className={
+                        isOnMobile
+                            ? `MxHeader__nav-bar-item-link`
+                            : `MxHeader__nav-bar-item-link--desktop`
+                    }
+                    target={external ? '_blank' : '_self'}
+                    onClick={navigate}
+                    role="button"
+                    onKeyPress={navigate}
+                >
+                    {label}
+                    {showNavBarMenuToggle && (
+                        <NavBarMenuToggle
+                            isOpen={isMenuOpen}
+                            onClick={this.toggleMenu}
+                        />
+                    )}
+                </a>
+
                 {((isOnMobile && isMenuOpen) || !isOnMobile) && (
                     <NavBarMenu
                         nodes={nodes}

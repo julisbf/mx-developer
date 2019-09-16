@@ -26,7 +26,11 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
         return (
             <div className="MxDock__profile">
-                <button className="MxDock__avatar" onClick={this.toggleMenu}>
+                <button
+                    className="MxDock__avatar"
+                    onClick={this.toggleMenu}
+                    type="button"
+                >
                     <img src={avatarUrl || defaultAvatar} alt={username} />
                 </button>
                 {isMenuOpen && <ProfileMenu closeMenu={this.toggleMenu} />}

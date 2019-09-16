@@ -2,7 +2,6 @@ import React from 'react';
 
 import NavBarComponent from '../../components/NavBar';
 import NavBarItem, { NavBarItemProps } from './NavBarItem';
-import Toggle from './NavBarMenuToggle';
 
 const NavBar = ({ isMobileNavBarOpen }: { isMobileNavBarOpen: boolean }) => {
     return (
@@ -18,8 +17,6 @@ const NavBar = ({ isMobileNavBarOpen }: { isMobileNavBarOpen: boolean }) => {
                     key={key}
                     {...data}
                     isOnMobile={isMobileNavBarOpen}
-                    block="MxHeader"
-                    toggleComponent={Toggle}
                 />
             )}
         </NavBarComponent>
