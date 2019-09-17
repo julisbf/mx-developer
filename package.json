@@ -99,6 +99,7 @@
         "@types/jwt-decode": "^2.2.1",
         "assets-webpack-plugin": "^3.9.10",
         "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^5.0.4",
         "cross-env": "^5.2.0",
         "mendix-client": "^7.15.7",
         "node-sass": "^4.12.0",
